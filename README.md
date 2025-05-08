@@ -87,3 +87,13 @@ php artisan make:resource CategoriaResource
 Categoria collection usualmente no se modifica
 
 En resource se decide que columnas de van a retornar y que llaves se tienen
+
+### Producto
+```sql
+php artisan make:model Producto --resource --api --migration
+php artisan migrate
+php artisan make:seeder ProductoSeeder
+php artisan migrate:refresh --seed
+php artisan make:resource ProductoCollection
+php artisan make:resource ProductoResource
+```
