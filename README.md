@@ -97,3 +97,59 @@ php artisan migrate:refresh --seed
 php artisan make:resource ProductoCollection
 php artisan make:resource ProductoResource
 ```
+
+### Auth
+```sql
+php artisan make:controller AuthController
+php artisan make:request RegistroRequest
+php artisan make:request LoginRequest
+```
+
+### Problemas de cors
+```sql
+php artisan config:publish cors
+'supports_credentials' => false, cambiar a true
+composer require laravel/sanctum
+    
+Verifica que Sanctum esté instalado: Asegúrate de que hayas instalado Sanctum con Composer:
+
+composer require laravel/sanctum
+Usa el trait HasApiTokens: Asegúrate de que tu modelo User esté utilizando el trait HasApiTokens de Sanctum:
+
+PHP
+
+use Laravel\Sanctum\HasApiTokens;
+ 
+class User extends Authenticatable
+{
+    use HasApiTokens, Notifiable;
+// ...
+}
+En tu carpeta bootstrap/providers.php
+Debes agregar el SanctumServiceProvider a la matriz de proveedores en tu archivo providers.php. Aquí te muestro cómo hacerlo:
+
+PHP
+
+<?php
+ 
+return [
+    App\Providers\AppServiceProvider::class,
+    Laravel\Sanctum\SanctumServiceProvider::class, // Añade esta línea
+];
+        
+        Con esto, el SanctumServiceProvider quedará registrado en tu aplicación Laravel 11.
+
+
+Para configurar el guardia API para usar Sanctum, debes editar tu archivo config/auth.php. Dentro de este archivo, encontrarás una sección llamada guards. Debes asegurarte de que el guardia api esté configurado para usar el driver sanctum de la siguiente manera:
+
+PHP
+
+'guards' => [
+    'api' => [
+        'driver' => 'sanctum',
+        'provider' => 'users',
+        // ...
+    ],
+    // ...
+],
+```
