@@ -153,3 +153,11 @@ PHP
     // ...
 ],
 ```
+
+### Pedidos
+```sql
+php artisan make:model Pedido --migration --api --resource
+php artisan migrate
+php artisan make:model PedidoProducto --migration
+php artisan migrate
+```
