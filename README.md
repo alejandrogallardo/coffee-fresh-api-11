@@ -161,3 +161,6 @@ php artisan migrate
 php artisan make:model PedidoProducto --migration
 php artisan migrate
 ```
+
+php artisan make:migration add_admin_column_to_users_table
+php artisan make:resource PedidoCollection

@@ -15,9 +15,9 @@ Route::middleware('auth:sanctum')->group(function () {
     });
     Route::post('/logout', [\App\Http\Controllers\AuthController::class, 'logout']);
     Route::apiResource('/pedidos', \App\Http\Controllers\PedidoController::class);
+    Route::apiResource('/categorias', CategoriaController::class);
+    Route::apiResource('/productos', ProductoController::class);
 });
-Route::apiResource('/categorias', CategoriaController::class);
-Route::apiResource('/productos', ProductoController::class);
 
 Route::post('/registro', [\App\Http\Controllers\AuthController::class, 'register']);
 Route::post('/login', [\App\Http\Controllers\AuthController::class, 'login']);

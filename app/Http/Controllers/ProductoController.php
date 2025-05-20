@@ -39,7 +39,9 @@ class ProductoController extends Controller
      */
     public function update(Request $request, Producto $producto)
     {
-        //
+        $producto->disponible = 0;
+        $producto->save();
+        return $producto;
     }
 
     /**
